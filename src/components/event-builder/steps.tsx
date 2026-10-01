@@ -220,7 +220,7 @@ export function BuilderSteps({
                   {money(s.price)} / profissional
                 </small>
               </span>
-              <label className="field">
+              <label className="field staff-quantity">
                 <span className="muted">
                   Quantidade de {s.label.toLowerCase()}
                 </span>

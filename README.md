@@ -234,3 +234,15 @@ Somente após validar o MVP: Stripe, PIX, e-mail via Resend, WhatsApp API, chatb
 ## Processo de construção
 
 [Pedido original](docs/mega-prompt.md), [hipóteses e métricas](docs/mvp-hypotheses.md), [teste manual](docs/manual-test.md). A documentação registra explicitamente o que foi verificado e o que depende da instalação real.
+
+## O mega prompt e as correções que você pediu depois
+
+O [mega prompt original](docs/mega-prompt.md) registra os requisitos usados na construção do MVP. As solicitações posteriores são documentadas abaixo para manter o histórico da entrega.
+
+### Alinhamento das quantidades da equipe — 1 de outubro de 2026
+
+Na etapa **Equipe** do configurador (`/montar-evento?pacote=happy-hour`), os campos de quantidade de chef, auxiliar de cozinha, bartender, garçom e recepcionista foram alinhados em uma única coluna vertical. Antes, a posição de cada caixa variava conforme o comprimento do seu rótulo.
+
+A coluna de quantidade agora tem largura consistente em todas as linhas, adaptada ao espaço disponível. Os rótulos continuam completos e podem quebrar linha em telas menores. Os preços, a sugestão de equipe e os cálculos permanecem iguais.
+
+Validação da correção: alinhamento conferido no navegador em 360, 390, 768, 1024 e 1440 px, sem rolagem horizontal. Lint, TypeScript, 42 testes automatizados e build aprovados.

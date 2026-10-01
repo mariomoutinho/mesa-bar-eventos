@@ -666,6 +666,10 @@ footer small {
   border-bottom: 1px solid var(--line);
   padding: 15px 0;
 }
+.staff-quantity {
+  width: min(45%, 240px);
+  flex-shrink: 0;
+}
 .staff-row input {
   width: 85px;
 }
