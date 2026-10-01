@@ -190,14 +190,26 @@ p {
 .hero-art {
   position: relative;
   min-height: 530px;
-  background: linear-gradient(130deg, #b4b095, #595e48);
+  background: #342820;
   border-radius: 48% 48% 3px 3px;
   overflow: hidden;
   isolation: isolate;
   box-shadow: inset 0 0 100px #30382444;
 }
+.hero-photo {
+  object-fit: cover;
+  object-position: 50% center;
+}
+.hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #160c08a6, transparent 40%, #160c0833);
+  pointer-events: none;
+}
 .art-caption {
   position: absolute;
+  z-index: 1;
   top: 42px;
   left: 0;
   right: 0;
@@ -206,121 +218,9 @@ p {
   color: #fffce9;
   font-size: 0.68rem;
 }
-.napkin {
-  position: absolute;
-  width: 58%;
-  height: 64%;
-  background: repeating-linear-gradient(
-    88deg,
-    #d6b5a8,
-    #cfaa9c 3px,
-    #d6b5a8 6px
-  );
-  transform: rotate(-24deg);
-  left: 22%;
-  top: 22%;
-  box-shadow: 5px 12px 25px #25251b50;
-}
-.plate {
-  position: absolute;
-  width: 74%;
-  aspect-ratio: 1;
-  top: 25%;
-  left: 8%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    #e5dfc7 0 49%,
-    #c3bda5 50%,
-    #f6f2df 53%,
-    #ede9d8 68%,
-    #bab6a1 70%,
-    #f5f0df 71%
-  );
-  box-shadow: 12px 18px 22px #20241966;
-}
-.meal {
-  position: absolute;
-  inset: 29%;
-  border-radius: 50%;
-  background:
-    radial-gradient(
-      ellipse at 55% 35%,
-      #c27738 0 15%,
-      #773b1e 32%,
-      transparent 34%
-    ),
-    radial-gradient(
-      ellipse at 30% 65%,
-      #d28d47 0 18%,
-      #764421 32%,
-      transparent 34%
-    );
-  transform: rotate(-25deg);
-}
-.meal i {
-  position: absolute;
-  width: 34%;
-  height: 20%;
-  border-radius: 100% 0 100% 0;
-  background: #3e5427;
-  box-shadow: inset 3px 3px 5px #a1a05c;
-  transform: rotate(30deg);
-  top: 10%;
-  left: 60%;
-}
-.meal i:nth-child(2) {
-  top: 70%;
-  left: 5%;
-  transform: rotate(90deg);
-}
-.meal i:nth-child(3) {
-  top: 40%;
-  left: 70%;
-}
-.meal i:nth-child(4) {
-  top: 80%;
-  left: 55%;
-  background: #8b301d;
-}
-.meal i:nth-child(5) {
-  top: 5%;
-  left: 20%;
-  background: #8b301d;
-}
-.glass {
-  position: absolute;
-  right: -2%;
-  top: 20%;
-  width: 23%;
-  height: 28%;
-  border: 2px solid #fdf6d790;
-  border-radius: 45% 45% 50% 50%;
-  background: linear-gradient(transparent 40%, #682d35aa 41%, #491c25bb);
-  transform: rotate(14deg);
-  box-shadow: 8px 12px 12px #26351b44;
-}
-.glass:after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  height: 75px;
-  width: 3px;
-  background: #e8e1c5aa;
-}
-.fork {
-  position: absolute;
-  bottom: 12%;
-  left: 11%;
-  width: 8px;
-  height: 180px;
-  background: linear-gradient(90deg, #8f753c, #ead8a8, #9f8751);
-  transform: rotate(-24deg);
-  border-radius: 10px;
-}
 .art-label {
   position: absolute;
+  z-index: 1;
   bottom: 24px;
   right: 20px;
   background: #faf8f4ed;
@@ -387,31 +287,55 @@ p {
   max-width: 300px;
 }
 .occasions {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
   background: #efece5;
-  gap: 7%;
 }
 .occasion-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 30px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 22px;
+  margin-top: 36px;
 }
-.occasion-grid a {
-  padding: 22px 0;
-  border-bottom: 1px solid #d1c9bc;
+.occasion-card {
+  display: block;
+  min-width: 0;
+  background: #faf8f4;
+  border: 1px solid #ddd5c9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.occasion-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #d7cab7;
+}
+.occasion-photo img {
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.occasion-card:hover .occasion-photo img {
+  transform: scale(1.035);
+}
+.occasion-caption {
   display: flex;
-  gap: 12px;
   align-items: center;
-  font-size: 0.85rem;
+  gap: 10px;
+  padding: 20px 14px;
+  min-height: 84px;
 }
-.occasion-grid span {
-  font-size: 0.65rem;
+.occasion-caption h3 {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin: 0;
+}
+.occasion-number {
   color: var(--wine);
+  font-size: 0.65rem;
 }
-.occasion-grid svg {
-  margin-left: auto;
+.occasion-caption svg {
+  color: var(--wine);
   flex-shrink: 0;
+  margin-left: auto;
 }
 .package {
   padding: 28px 22px;
@@ -452,10 +376,29 @@ p {
   font-size: 0.75rem;
 }
 .closing {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--wine);
-  padding: 70px 24px;
+  padding: 100px 24px;
   text-align: center;
   color: white;
+}
+.closing-photo {
+  object-fit: cover;
+  object-position: center 55%;
+  z-index: -2;
+}
+.closing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #211314d9, #37151cb8 50%, #211314d9);
+}
+.closing-content {
+  max-width: 760px;
+  margin-inline: auto;
 }
 .closing em,
 .closing .eyebrow {
@@ -798,6 +741,9 @@ legend {
   font-size: 0.85rem;
 }
 @media (max-width: 1100px) {
+  .occasion-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .four {
     grid-template-columns: 1fr 1fr;
   }
@@ -925,12 +871,6 @@ legend {
   .form-grid {
     grid-template-columns: 1fr;
   }
-  .occasion-grid {
-    gap: 0 15px;
-  }
-  .occasion-grid a {
-    font-size: 0.75rem;
-  }
   .choices {
     grid-template-columns: 1fr;
   }
@@ -948,5 +888,30 @@ legend {
   }
   .form-actions .button {
     padding: 12px 16px;
+  }
+}
+
+@media (max-width: 540px) {
+  .occasion-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .occasion-photo {
+    aspect-ratio: 16 / 10;
+  }
+  .occasion-caption {
+    min-height: 68px;
+    padding: 16px;
+  }
+  .closing {
+    padding: 75px 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .occasion-photo img {
+    transition: none;
+  }
+  .occasion-card:hover .occasion-photo img {
+    transform: none;
   }
 }

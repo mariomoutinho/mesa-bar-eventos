@@ -182,7 +182,7 @@ Capturas reais do navegador, geradas pelos testes:
 
 [Landing mobile](docs/screenshots/landing-390.png) · [Resultado mobile](docs/screenshots/configurador-390.png)
 
-A composição gastronômica do hero foi construída em CSS, sem imagens remotas ou bibliotecas de imagem adicionais.
+O destaque inicial, os oito cards de ocasiões e a chamada final utilizam imagens locais em WebP, com carregamento responsivo pelo `next/image`.
 
 ## Segurança e privacidade
 
@@ -246,3 +246,30 @@ Na etapa **Equipe** do configurador (`/montar-evento?pacote=happy-hour`), os cam
 A coluna de quantidade agora tem largura consistente em todas as linhas, adaptada ao espaço disponível. Os rótulos continuam completos e podem quebrar linha em telas menores. Os preços, a sugestão de equipe e os cálculos permanecem iguais.
 
 Validação da correção: alinhamento conferido no navegador em 360, 390, 768, 1024 e 1440 px, sem rolagem horizontal. Lint, TypeScript, 42 testes automatizados e build aprovados.
+
+### Imagens e refinamento visual — 1 de outubro de 2026
+
+**Descrição enviada no pedido:**
+
+> fiz download de imagens para colocar no sit. uma delas poderia ser usada como fundo nessa parte aqui,para dar um ar mais sofisticado. as imagens estão no disco E. utilize todas elas no site estilizando ele melhor. antes de colcoar elas diminua o tamanho delas para que melhore a CEO.
+
+As oito imagens foram incorporadas ao site com tons quentes, enquadramentos responsivos e contraste preservado. A seção “Vamos criar uma boa memória?” recebeu uma imagem de fundo com sobreposição escura, mantendo legíveis o título, o botão e a mensagem de atendimento.
+
+| Imagem original | Arquivo otimizado | Espaço no site e descrição |
+| --- | --- | --- |
+| `07_30_36-1.png` | `aniversario-ao-por-do-sol.webp` | Card **Aniversários**: celebração com bolo, flores e taças ao pôr do sol. |
+| `07_30_37-2.png` | `confraternizacao-com-buffet.webp` | Card **Confraternizações**: convidados reunidos em torno de um buffet à luz de velas. |
+| `07_30_37-3.png` | `evento-corporativo.webp` | Card **Eventos corporativos**: encontro profissional com buffet e espumante. |
+| `07_30_39-4.png` | `rooftop-ao-entardecer.webp` | Card **Rooftops** e fundo de **“Vamos criar uma boa memória?”**: lounge com coquetéis e vista da cidade ao entardecer. |
+| `07_30_40-5.png` | `evento-em-condominio.webp` | Card **Eventos em condomínios**: buffet e convivência junto à piscina. |
+| `07_30_41-6.png` | `recepcao-com-espumante.webp` | Card **Recepções**: serviço de espumante, flores e iluminação acolhedora. |
+| `07_30_42-7.png` | `jantar-privado.webp` | Destaque inicial **“Seu evento. Seu cardápio. Sua experiência.”** e card **Jantares privados**: mesa com pratos servidos, taças e velas. |
+| `07_30_43-8.png` | `happy-hour-com-drinks.webp` | Card **Happy hours**: amigos compartilhando drinks e petiscos ao ar livre. |
+
+**Otimização para desempenho e SEO:** os originais PNG de 1672 × 941 px totalizavam 16.470.708 bytes (16,47 MB). As cópias WebP totalizam 685.266 bytes (685 KB), uma redução de **95,8%**. Sete imagens foram redimensionadas para 1200 × 675 px; a imagem de rooftop, utilizada também no fundo, para 1440 × 810 px. Os originais no disco E foram preservados.
+
+Os arquivos têm nomes descritivos e textos alternativos relacionados ao conteúdo. A imagem decorativa de fundo possui `alt` vazio, evitando repetição para leitores de tela. O `next/image` entrega tamanhos adequados por dispositivo, reserva o espaço visual e carrega sob demanda as imagens fora do destaque inicial. Somente a imagem principal tem pré-carregamento. Essas medidas apoiam desempenho, acessibilidade e SEO técnico, sem promessa de posição em mecanismos de busca.
+
+Os tamanhos individuais estão em [docs/image-optimization.json](docs/image-optimization.json). Para reproduzir a conversão a partir dos originais: `node scripts/optimize-images.mjs /mnt/e`.
+
+Validação da atualização: carregamento das oito imagens e layout conferidos em 360, 390, 768, 1024 e 1440 px; 11 testes de navegador, 42 testes unitários/API, lint, TypeScript e build aprovados. Capturas atualizadas em `docs/screenshots`.

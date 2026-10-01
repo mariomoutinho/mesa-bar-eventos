@@ -12,6 +12,17 @@ for (const width of [360, 390, 768, 1024, 1440])
         () => document.documentElement.scrollWidth <= window.innerWidth,
       ),
     ).toBe(true);
+    for (const image of await page.locator("main img").all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect
+        .poll(() =>
+          image.evaluate(
+            (element) => (element as HTMLImageElement).naturalWidth,
+          ),
+        )
+        .toBeGreaterThan(0);
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({
       path: `docs/screenshots/landing-${width}.png`,
       fullPage: true,

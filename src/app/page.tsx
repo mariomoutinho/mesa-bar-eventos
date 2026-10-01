@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { gallery } from "@/config/gallery";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -8,16 +10,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { packages, food, drinks, staff, extras } from "@/config/pricing";
-const occasions = [
-  "Aniversários",
-  "Confraternizações",
-  "Eventos corporativos",
-  "Rooftops",
-  "Eventos em condomínios",
-  "Recepções",
-  "Jantares privados",
-  "Happy hours",
-];
 export default function Home() {
   return (
     <>
@@ -48,28 +40,20 @@ export default function Home() {
             <span>Personalizado para você</span>
           </div>
         </div>
-        <div
-          className="hero-art"
-          role="img"
-          aria-label="Composição ilustrada de uma mesa posta com prato, taça e folhas"
-        >
+        <div className="hero-art">
+          <Image
+            src={gallery[6].src}
+            alt={gallery[6].alt}
+            fill
+            sizes="(max-width: 767px) 90vw, 45vw"
+            preload
+            className="hero-photo"
+          />
           <span className="art-caption">
             O EXTRAORDINÁRIO
             <br />
             COMEÇA À MESA.
           </span>
-          <div className="napkin" />
-          <div className="plate">
-            <div className="meal">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-          <div className="fork" />
-          <div className="glass" />
           <div className="art-label">
             <Wine size={26} />
             <span>
@@ -133,11 +117,25 @@ export default function Home() {
           </h2>
         </div>
         <div className="occasion-grid">
-          {occasions.map((o, i) => (
-            <Link href="/montar-evento" key={o}>
-              <span>0{i + 1}</span>
-              {o}
-              <ArrowUpRight size={18} />
+          {gallery.map((occasion, i) => (
+            <Link
+              className="occasion-card"
+              href="/montar-evento"
+              key={occasion.label}
+            >
+              <div className="occasion-photo">
+                <Image
+                  src={occasion.src}
+                  alt={occasion.alt}
+                  fill
+                  sizes="(max-width: 540px) 90vw, (max-width: 1100px) 44vw, 22vw"
+                />
+              </div>
+              <div className="occasion-caption">
+                <span className="occasion-number">0{i + 1}</span>
+                <h3>{occasion.label}</h3>
+                <ArrowUpRight size={18} />
+              </div>
             </Link>
           ))}
         </div>
@@ -184,18 +182,28 @@ export default function Home() {
         </div>
       </section>
       <section className="closing">
-        <p className="eyebrow">O PRÓXIMO ENCONTRO COMEÇA AQUI</p>
-        <h2>
-          Vamos criar uma
-          <br />
-          <em>boa memória?</em>
-        </h2>
-        <Link className="button light" href="/montar-evento">
-          Montar meu evento <ArrowUpRight size={18} />
-        </Link>
-        <p>
-          Estimativa inicial, sem compromisso. Atendimento humano no fechamento.
-        </p>
+        <Image
+          src={gallery[3].src}
+          alt=""
+          fill
+          sizes="100vw"
+          className="closing-photo"
+        />
+        <div className="closing-content">
+          <p className="eyebrow">O PRÓXIMO ENCONTRO COMEÇA AQUI</p>
+          <h2>
+            Vamos criar uma
+            <br />
+            <em>boa memória?</em>
+          </h2>
+          <Link className="button light" href="/montar-evento">
+            Montar meu evento <ArrowUpRight size={18} />
+          </Link>
+          <p>
+            Estimativa inicial, sem compromisso. Atendimento humano no
+            fechamento.
+          </p>
+        </div>
       </section>
     </>
   );
